@@ -1,34 +1,23 @@
 const express = require('express');
 const cors = require('cors');
+const movies = require ('./data/movies.json');
 
 // create and config server
-const server = express();
-server.use(cors());
-server.use(express.json());
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 // init express aplication
-const serverPort = 3001;
-server.listen(serverPort, () => {
+const serverPort = 4000;
+app.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
-server.get('/movies', (req, res) => {
+//servidor estático
+const staticServerPath = './public'; 
+app.use(express.static(staticServerPath));
+
+app.get('/movies', (req, res) => {
   console.log('Ha pasao por aqui.');
-  res.send({
-    success: true,
-    movies: [
-      {
-        id: '1',
-        title: 'Gambita de dama',
-        gender: 'Drama',
-        image: 'https://via.placeholder.com/150',
-      },
-      {
-        id: '2',
-        title: 'Friends',
-        gender: 'Comedia',
-        image: 'https://via.placeholder.com/150',
-      },
-    ],
-  });
+  res.send(movies);
 });
