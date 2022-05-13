@@ -2,6 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const movies = require ('./data/movies.json');
 
+const movies = {
+  success: true,
+  movies: [
+    {
+      id: '1',
+      title: 'Gambita de dama',
+      gender: 'Drama',
+      image: 'https://via.placeholder.com/150',
+    },
+    {
+      id: '2',
+      title: 'Friends',
+      gender: 'Comedia',
+      image: 'https://via.placeholder.com/150',
+    },
+  ],
+};
+
 // create and config server
 const app = express();
 app.use(cors());
