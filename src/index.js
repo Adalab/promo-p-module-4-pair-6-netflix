@@ -10,7 +10,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 // init express aplication
-const serverPort = 4001;
+const serverPort = 4000;
 app.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
