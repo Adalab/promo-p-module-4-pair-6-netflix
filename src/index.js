@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const movies = require('./data/movies.json');
-const db = new Database('./src/db/database.db', { movies });
+const Database = require('better-sqlite3');
 
 // create and config server
 const app = express();
@@ -15,12 +15,21 @@ app.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
+const db = new Database('./src/db/database.db', { verbose: console.log });
+
 app.get('/movies', (req, res) => {
   res.json({
     success: true,
     movies: movies,
   });
   console.log('pide movie');
+});
+
+app.get('/', (req, res) => {
+  const query = db.prepare(`SELECT * FROM movies  ORDER BY  title `);
+  const movieList = query.all();
+  console.log(movieList);
+  res.render('movies/', { movieList });
 });
 
 app.get('/movie/:movieId', (req, res) => {
