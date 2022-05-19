@@ -18,29 +18,24 @@ app.listen(serverPort, () => {
 const db = new Database('./src/db/database.db', { verbose: console.log });
 
 app.get('/movies', (req, res) => {
-  res.json({
-    success: true,
-    movies: movies,
-  });
-  console.log('pide movie');
-});
-
-app.get('/', (req, res) => {
   const query = db.prepare(`SELECT * FROM movies  ORDER BY  title `);
   const movieList = query.all();
-  console.log(movieList);
-  res.render('movies/', { movieList });
+  res.json({
+    success: true,
+    movies: movieList,
+  });
 });
 
 app.get('/movie/:movieId', (req, res) => {
-  // get film data
-  console.log('hola');
-  const movieData = movies.find((movie) => movie.id === req.params.movieId);
-  console.log(movieData);
+  const query = db.prepare(`SELECT * FROM movies WHERE id`);
+  const movieId = query.get();
+  console.log(movieId);
 
+  // const moviesId = movies.find((movie) => movie.id === req.params.movieId);
+  // console.log(moviesId);
   // // response with rendered template
   // if (movieData) {
-  //   res.render('movies/movie', movieData);
+  res.render('movie', movieId);
   // } else {
   //   res.render('movies/movie-not-found');
   // }
