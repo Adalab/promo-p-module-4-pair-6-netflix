@@ -17,6 +17,8 @@ app.listen(serverPort, () => {
 
 const db = new Database('./src/db/database.db', { verbose: console.log });
 
+//endpoint movies
+
 app.get('/movies', (req, res) => {
   const query = db.prepare(`SELECT * FROM movies  ORDER BY  title `);
   const movieList = query.all();
@@ -26,19 +28,14 @@ app.get('/movies', (req, res) => {
   });
 });
 
-app.get('/movie/:movieId', (req, res) => {
-  const query = db.prepare(`SELECT * FROM movies WHERE id`);
-  const movieId = query.get();
-  console.log(movieId);
+//servidor dinámico
 
-  // const moviesId = movies.find((movie) => movie.id === req.params.movieId);
-  // console.log(moviesId);
-  // // response with rendered template
-  // if (movieData) {
-  res.render('movie', movieId);
-  // } else {
-  //   res.render('movies/movie-not-found');
-  // }
+app.get('/movie/:movieId', (req, res) => {
+  const query = db.prepare(`SELECT * FROM movies WHERE id = ?`);
+  const movie = query.get(req.params.movieId);
+  console.log(movie);
+
+  res.render('movies', movie);
 });
 
 //servidor estático
@@ -47,3 +44,8 @@ app.use(express.static(staticServerPath));
 
 const staticServerPathImgs = './src/public-images';
 app.use(express.static(staticServerPathImgs));
+
+// Crear servicio estático para los estilos
+
+const staticServerPathStyles = '.src/web/src/stylesheets';
+app.use(express.static(staticServerPathStyles));
