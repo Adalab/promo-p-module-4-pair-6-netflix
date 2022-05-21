@@ -2,21 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/icono_netflix_nuevo.jpg" />
+    <link rel="icon" href="%PUBLIC_URL%/icono_netflix_nuevo.jpg" />
     <link
       rel="stylesheet"
       href="//beta.adalab.es/resources/stylesheets/all.css"
     />
-    <link rel="stylesheet" href="/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Netflix</title>
   </head>
   <body class="page">
     <ul>
       <li className="card">
-        <img className="card__img" src="<%= image %>" width="150px" />
+        <img className="card__img" src="<%= image %>" alt= />
         <h3 className="card__title"><%= title %></h3>
-        <p className="card__description"><%= description %></p>
+        <p className="card__description"></p>
       </li>
     </ul>
   </body>
