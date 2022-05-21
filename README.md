@@ -33,8 +33,8 @@ Por favor marca a continuación los ejericios que hayais terminado:
 4.2 Express JS I:
 
 - [x] 1. Pedir todas las películas
-- [ ] 2. Filtrar por género
-- [x] 3. Ordenar por nombre
+- [x] 2. Filtrar por género
+- [] 3. Ordenar por nombre
 
 4.3 Express JS II:
 
@@ -47,8 +47,8 @@ Por favor marca a continuación los ejericios que hayais terminado:
 
 - [x] 1. Obtener el id de la película a renderizar
 - [x] 2. Obtener la película
-- [ ] 3. Renderiza una página cualquiera
-- [ ] 4. Renderiza la película
+- [x] 3. Renderiza una página cualquiera
+- [x] 4. Renderiza la película
 - [ ] 5. Añade estilos
 
 4.5 Bases de datos I:
