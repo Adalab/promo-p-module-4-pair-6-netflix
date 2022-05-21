@@ -22,7 +22,8 @@ app.listen(serverPort, () => {
 });
 
 //endpoint movies
-app.get("/movies", (req, res) => {
+
+app.get('/movies', (req, res) => {
   const query = db.prepare(`SELECT * FROM movies  ORDER BY  title `);
   const movieList = query.all();
   res.json({
@@ -31,7 +32,25 @@ app.get("/movies", (req, res) => {
   });
 });
 
+//gender filter
+//app.get("/movies", (req, res) => {
+  //let movies = [];
+  //const genderParam = req.query.gender;
+  //if (genderParam === "") {
+    //const query = db.prepare(`SELECT * FROM movies`);
+    //movies = query.all();
+  //} else {
+    //const query = db.prepare(`SELECT * FROM movies WHERE gender= ?`);
+    //movies = query.all(genderParam);
+  //}
+  //res.json({
+    //success: true,
+    //movies: movies,
+  //});
+//});
+
 //servidor dinámico
+
 app.get("/movie/:movieId", (req, res) => {
   const query = db.prepare(`SELECT * FROM movies WHERE id = ?`);
   const movie = query.get(req.params.movieId);
