@@ -24,8 +24,10 @@ app.listen(serverPort, () => {
 //endpoint movies & gender filter
 app.get('/movies', (req, res) => {
   let movies = [];
-  const genderParam = req.query.gender;
-  const sortParam = req.query.sort;
+
+  const genderParam = req.query.gender ? req.query.gender : '';
+  const sortParam = req.query.sort ? req.query.sort : '';
+
   if (genderParam === '') {
     const query = db.prepare(
       `SELECT * FROM movies ORDER BY title ${sortParam}`
@@ -64,3 +66,7 @@ app.use(express.static(staticServerPathImgs));
 // Crear servicio estático para los estilos
 const pathServerPublicStyles = './src/public-css';
 app.use(express.static(pathServerPublicStyles));
+
+app.get('*', (req, res) => {
+  res.send('NUUUUUUP, try again');
+});
